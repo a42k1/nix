@@ -94,10 +94,6 @@
   programs.git.enable = true;
   programs.direnv.enable = true;
   programs.thunar.enable = true;
-  # programs.zsh.enable = true;
-  # programs.zsh.ohMyZsh.enable = true;
-  # programs.zsh.ohMyZsh.theme = "robbyrussell";
-  # programs.zsh.ohMyZsh.plugins = [ "git" "z" "sudo" "extract" ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

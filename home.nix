@@ -70,7 +70,22 @@
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
-
+  
+  #mines
+  programs.bash = {
+    enable = true;
+    shellAliases = {
+      ll = "ls -l";
+      ".." = "cd ..";
+    };
+  };
+  programs.zsh = {
+    enable = true;
+    shellAliases = {
+      ll = "ls -l";
+      ".." = "cd ..";
+    };
+  };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
