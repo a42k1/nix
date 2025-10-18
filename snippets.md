@@ -1,6 +1,6 @@
 # Placeholder = https://nixos.wiki/wiki/Cheatsheet
 
-## UPDATING - for full update follow this it like this.
+## UPDATING - for full update follow it like this.
 
 ```
 1. nix flake update #updates flake.lock file
