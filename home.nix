@@ -88,7 +88,7 @@ in
   };
   programs.kitty = {
   	enable = true;
-  	shellAliases = aliases;
+  	# shellAliases = aliases DOENST WORK WITH KITTY TRY CHANGING KITTY.CONF;
   };
   programs.fish = {
     enable = true;

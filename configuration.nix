@@ -14,12 +14,12 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  #shell
-  environment.shells = with pkgs; [ kitty fish zsh ];
-  users.defaultUserShell = pkgs.kitty;
-  programs.kitty.enable = true;
+  # shell
+  environment.shells = with pkgs; [fish zsh];
+  users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
   programs.zsh.enable = true;
+
   networking.hostName = "nix42"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
