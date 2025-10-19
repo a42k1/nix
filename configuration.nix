@@ -149,8 +149,9 @@
       "--update-input" "home-manager"
       "--commit-lock-file"       
     ];
-    dates = "04:00";
-    allowReboot = false;         
+    dates = "daily";
+    allowReboot = false;
+    persistent = true;         
   };
 
   # Some programs need SUID wrappers, can be configured further or are
