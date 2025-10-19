@@ -2,11 +2,18 @@
 
 let 
   aliases = {
+    # System update with nixpkgs update
+    syu = "cd /home/a42/Nix/.dotfiles && nix flake lock --update-input nixpkgs && sudo nixos-rebuild switch --flake .";
+    
+    # Home manager update
     hmu = "cd /home/a42/Nix/.dotfiles && nix flake lock --update-input home-manager && home-manager switch --flake .";
-    sysu = "sudo nixos-rebuild switch --flake /home/a42/Nix/.dotfiles";
+    
+    # Quick rebuild without updating (faster)
+    syr = "sudo nixos-rebuild switch --flake /home/a42/Nix/.dotfiles";
+    
     ll = "ls -l";
     ".." = "cd ..";
-};
+  };
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
