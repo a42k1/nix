@@ -116,6 +116,19 @@
     qownnotes
     nemo-with-extensions
     fastfetch
+    # Wine and Lutris
+    wineWowPackages.stable
+    winetricks
+    lutris
+
+    # Gaming performance layers
+    dxvk
+    vkd3d-proton
+
+    # Vulkan debugging and info tools
+    vulkan-tools # Provides vulkaninfo, vulkan-cube
+    vulkan-validation-layers
+    glxinfo # For Mesa version info
   ];
 
   # SYSTEMROOT
@@ -154,6 +167,18 @@
     dates = "daily";
     allowReboot = false;
     persistent = true;
+  };
+  # Automatic garbage collection
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 6d";
+  };
+
+  # Optimize nix store automatically
+  nix.optimise = {
+    automatic = true;
+    dates = ["weekly"];
   };
 
   # Some programs need SUID wrappers, can be configured further or are

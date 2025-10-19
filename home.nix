@@ -4,23 +4,27 @@
   ...
 }: let
   aliases = {
-    # System update with nixpkgs update
-    syu = "cd /home/a42/Nix/.dotfiles && nix flake update nixpkgs && sudo nixos-rebuild switch --flake .";
+    # System Management
+    syu = "cd /home/a42/Nix/.dotfiles && nix flake update nixpkgs && sudo nixos-rebuild switch --flake ."; # Update nixpkgs and rebuild system
+    hmu = "cd /home/a42/Nix/.dotfiles && nix flake update home-manager && home-manager switch --flake ."; # Update home-manager and switch
+    syr = "sudo nixos-rebuild switch --flake /home/a42/Nix/.dotfiles"; # Quick system rebuild without updating
+    hmr = "home-manager switch --flake /home/a42/Nix/.dotfiles"; # Quick home-manager rebuild without updating
 
-    # Home manager update
-    hmu = "cd /home/a42/Nix/.dotfiles && nix flake update home-manager && home-manager switch --flake .";
+    # Navigation
+    ll = "ls -l"; # List files in long format
+    ".." = "cd .."; # Go up one directory
 
-    # Quick rebuild without updating (faster)
-    syr = "sudo nixos-rebuild switch --flake /home/a42/Nix/.dotfiles";
+    # Garbage Collection
+    gc-check = "nix-store --gc --print-dead"; # Preview what will be deleted (safe, no changes)
+    gc-run = "sudo nix-collect-garbage -d"; # Delete old generations and collect garbage (recommended for regular cleanup)
+    gc-older = "sudo nix-collect-garbage --delete-older-than 7d"; # Delete generations older than 7 days (keeps recent changes)
 
-    hmr = "home-manager switch --flake /home/a42/Nix/.dotfiles";
-
-    ll = "ls -l";
-    ".." = "cd ..";
+    # System Information
+    nix-size = "du -sh /nix/store"; # Check total Nix store disk usage
+    list-gens = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system"; # List all system generations with dates
   };
 in {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
+  # Home Manager needs a bit of information about you and the paths it should manage.
   home.username = "a42k1";
   home.homeDirectory = "/home/a42k1";
 
