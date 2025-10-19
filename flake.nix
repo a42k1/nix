@@ -4,11 +4,15 @@ description = "first flake";
 
 inputs = {
 	nixpkgs.url = "nixpkgs/nixos-unstable";
-	home-manager.url = "github:nix-community/home-manager/master";
+  #Nix Formatter
+  alejandra.url = "github:kamadorueda/alejandra/4.0.0";
+  alejandra.inputs.nixpkgs.follows = "nixpkgs";
+	#Home manager
+  home-manager.url = "github:nix-community/home-manager/master";
 	home-manager.inputs.nixpkgs.follows = "nixpkgs";
 };
 
-outputs = { self, nixpkgs, home-manager, ...}:
+outputs = { self, nixpkgs, home-manager, alejandra, ...}:
 	let
 		lib = nixpkgs.lib;
 		system = "x86_64-linux";
@@ -17,7 +21,11 @@ outputs = { self, nixpkgs, home-manager, ...}:
 		nixosConfigurations = {
 			nix42 = lib.nixosSystem {
 				inherit system;
-				modules = [ ./configuration.nix ];
+				modules = [ 
+          ./configuration.nix
+          #Include below packages system wide, try this layout for home later.
+          {environment.systemPackages = [alejandra.defaultPackage.${system}];}
+        ];
 				};
 		};
 		homeConfigurations = {
