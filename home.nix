@@ -1,5 +1,11 @@
 { config, pkgs, ... }:
 
+let 
+  aliases = {
+    ll = "ls -l";
+    ".." = "cd ..";
+};
+in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -74,17 +80,19 @@
   #mines
   programs.bash = {
     enable = true;
-    shellAliases = {
-      ll = "ls -l";
-      ".." = "cd ..";
-    };
+    shellAliases = aliases;
   };
   programs.zsh = {
     enable = true;
-    shellAliases = {
-      ll = "ls -l";
-      ".." = "cd ..";
-    };
+    shellAliases = aliases;
+  };
+  programs.kitty = {
+  	enable = true;
+  	shellAliases = aliases;
+  };
+  programs.fish = {
+    enable = true;
+    shellAliases = aliases;
   };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
