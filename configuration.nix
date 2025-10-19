@@ -88,15 +88,17 @@
   users.users.a42k1 = {
     isNormalUser = true;
     description = "a42k1";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "gamemode" ];
     packages = with pkgs; [
     #  thunderbird
     ];
   };
 
   # Install Applications
+	programs.steam.enable = true;
+	programs.steam.gamescopeSession.enable = true;
+	programs.gamemode.enable = true;
   programs.firefox.enable = true;
-  programs.steam.enable = true;
   programs.git.enable = true;
   programs.direnv.enable = true;
   programs.thunar.enable = true;
@@ -107,12 +109,14 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
- 	wget
-	vscode
-	discord
-	qownnotes
-  nemo-with-extensions
-  fastfetch
+		protonup-qt
+		mangohud
+		wget
+		vscode
+		discord
+		qownnotes
+		nemo-with-extensions
+		fastfetch
   ];
 #TODO
 #Put ALL HARDWARE in hard-conf.nix
@@ -132,16 +136,23 @@
   
 
 
-
+	#Graphics
   #GPU (AMD)
+	services.xserver.videoDrivers = ["amdgpu"];
   hardware.graphics.extraPackages = with pkgs;[
-    rocmPackages.clr.icd     
+		rocmPackages.clr.icd     
   ];
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
 
+  system.autoUpgrade = {
+    enable = true;
+    flake = "github:com/a42k1/nix";
+    flag = [];
+    dates
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

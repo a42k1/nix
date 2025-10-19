@@ -39,6 +39,8 @@ git push origin <target-branch>
 # Option 1: Stash uncommitted changes and switch branches
 git stash push <filename>
 git checkout <branch>
+git push <branch>
+git checkout <back-to-branch>
 git stash pop  # Apply stashed changes back
 
 # Option 2: Commit changes before merging
