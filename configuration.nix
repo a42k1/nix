@@ -1,21 +1,22 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # shell
-  environment.shells = with pkgs; [ zsh ];
+  environment.shells = with pkgs; [zsh];
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
 
@@ -33,9 +34,9 @@
   time.timeZone = "America/Fortaleza";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "pt_BR.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8";
 
-  i18n.extraLocaleSettings = {  
+  i18n.extraLocaleSettings = {
     LC_ADDRESS = "pt_BR.UTF-8";
     LC_IDENTIFICATION = "pt_BR.UTF-8";
     LC_MEASUREMENT = "pt_BR.UTF-8";
@@ -59,7 +60,6 @@
     layout = "us";
     variant = "";
   };
-
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -87,16 +87,16 @@
   users.users.a42k1 = {
     isNormalUser = true;
     description = "a42k1";
-    extraGroups = [ "networkmanager" "wheel" "gamemode" ];
+    extraGroups = ["networkmanager" "wheel" "gamemode"];
     packages = with pkgs; [
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
   # Install Applications
-	programs.steam.enable = true;
-	programs.steam.gamescopeSession.enable = true; #For testing fps cpu gpu and temps
-	programs.gamemode.enable = true; # Performance on games
+  programs.steam.enable = true;
+  programs.steam.gamescopeSession.enable = true; #For testing fps cpu gpu and temps
+  programs.gamemode.enable = true; # Performance on games
   programs.firefox.enable = true;
   programs.git.enable = true;
   programs.direnv.enable = true;
@@ -108,14 +108,14 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-		protonup-qt
-		mangohud
-		wget
-		vscode
-		discord
-		qownnotes
-		nemo-with-extensions
-		fastfetch
+    protonup-qt
+    mangohud
+    wget
+    vscode
+    discord
+    qownnotes
+    nemo-with-extensions
+    fastfetch
   ];
 
   # SYSTEMROOT
@@ -128,11 +128,11 @@
   fileSystems."/home/a42" = {
     device = "/dev/disk/by-uuid/ef394725-6efc-4a3c-8438-a7758b4101a2";
     fsType = "ext4";
-    options = [ "defaults" "nofail" ];
+    options = ["defaults" "nofail"];
   };
 
   # Graphics - GPU (AMD)
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver.videoDrivers = ["amdgpu"];
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -145,13 +145,15 @@
     enable = true;
     flake = "path:/home/a42/Nix/.dotfiles";
     flags = [
-      "--update-input" "nixpkgs"
-      "--update-input" "home-manager"
-      "--commit-lock-file"       
+      "--update-input"
+      "nixpkgs"
+      "--update-input"
+      "home-manager"
+      "--commit-lock-file"
     ];
     dates = "daily";
     allowReboot = false;
-    persistent = true;         
+    persistent = true;
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -180,5 +182,5 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 }

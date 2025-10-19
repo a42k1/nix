@@ -1,23 +1,24 @@
-{ config, pkgs, ... }:
-
-let 
+{
+  config,
+  pkgs,
+  ...
+}: let
   aliases = {
     # System update with nixpkgs update
     syu = "cd /home/a42/Nix/.dotfiles && nix flake update nixpkgs && sudo nixos-rebuild switch --flake .";
-    
+
     # Home manager update
     hmu = "cd /home/a42/Nix/.dotfiles && nix flake update home-manager && home-manager switch --flake .";
-    
+
     # Quick rebuild without updating (faster)
     syr = "sudo nixos-rebuild switch --flake /home/a42/Nix/.dotfiles";
-    
+
     hmr = "home-manager switch --flake /home/a42/Nix/.dotfiles";
-    
+
     ll = "ls -l";
     ".." = "cd ..";
   };
-in
-{
+in {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "a42k1";
@@ -87,7 +88,7 @@ in
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
-  
+
   #my configs
   programs.bash = {
     enable = true;
@@ -103,7 +104,7 @@ in
     syntaxHighlighting.enable = true;
   };
   programs.kitty = {
-  	enable = true;
+    enable = true;
   };
 
   # Let Home Manager install and manage itself.

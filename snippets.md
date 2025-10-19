@@ -59,3 +59,9 @@ nix run github:astro/deadnix example.nix
 # Scans and removes unused code. No reason to use this
 nix run github:astro/deadnix -- -eq test.nix
 ```
+
+## Steam
+
+HOST_LC_ALL=pt_BR.UTF-8 Para o jogo reconhecer servidor BR
+mangohud p/ CHECAR FPS GPU CPU TEMPS
+gamemoderun %command%
