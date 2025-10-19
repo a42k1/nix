@@ -2,6 +2,8 @@
 
 let 
   aliases = {
+    hmu = "cd /home/a42/Nix/.dotfiles && nix flake lock --update-input home-manager && home-manager switch --flake .";
+    sysu = "sudo nixos-rebuild switch --flake /home/a42/Nix/.dotfiles";
     ll = "ls -l";
     ".." = "cd ..";
 };
@@ -77,22 +79,21 @@ in
     # EDITOR = "emacs";
   };
   
-  #mines
+  #my configs
   programs.bash = {
     enable = true;
     shellAliases = aliases;
   };
+
   programs.zsh = {
     enable = true;
     shellAliases = aliases;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
   };
   programs.kitty = {
   	enable = true;
-  	# shellAliases = aliases DOENST WORK WITH KITTY TRY CHANGING KITTY.CONF;
-  };
-  programs.fish = {
-    enable = true;
-    shellAliases = aliases;
   };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

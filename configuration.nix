@@ -15,9 +15,8 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # shell
-  environment.shells = with pkgs; [fish zsh];
-  users.defaultUserShell = pkgs.fish;
-  programs.fish.enable = true;
+  environment.shells = with pkgs; [ zsh ];
+  users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
 
   networking.hostName = "nix42"; # Define your hostname.
@@ -34,7 +33,7 @@
   time.timeZone = "America/Fortaleza";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "pt_BR.UTF-8";
 
   i18n.extraLocaleSettings = {  
     LC_ADDRESS = "pt_BR.UTF-8";
@@ -96,8 +95,8 @@
 
   # Install Applications
 	programs.steam.enable = true;
-	programs.steam.gamescopeSession.enable = true;
-	programs.gamemode.enable = true;
+	programs.steam.gamescopeSession.enable = true; #For testing fps cpu gpu and temps
+	programs.gamemode.enable = true; # Performance on games
   programs.firefox.enable = true;
   programs.git.enable = true;
   programs.direnv.enable = true;
@@ -118,41 +117,42 @@
 		nemo-with-extensions
 		fastfetch
   ];
-#TODO
-#Put ALL HARDWARE in hard-conf.nix
-# hardware configuration
-#storage
-#SYSTEMROOT>
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/f3f3216e-5eef-4724-a2cb-ac5e4870810c";
-      fsType = "ext4";
-    };
-#A42>
-  fileSystems."/home/a42" =
-    { device = "/dev/disk/by-uuid/ef394725-6efc-4a3c-8438-a7758b4101a2";
-      fsType = "ext4";
-	options = ["defaults" "nofail"];
-    };
-  
 
+  # SYSTEMROOT
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/f3f3216e-5eef-4724-a2cb-ac5e4870810c";
+    fsType = "ext4";
+  };
 
-	#Graphics
-  #GPU (AMD)
-	services.xserver.videoDrivers = ["amdgpu"];
-  hardware.graphics.extraPackages = with pkgs;[
-		rocmPackages.clr.icd     
-  ];
+  # A42 home partition
+  fileSystems."/home/a42" = {
+    device = "/dev/disk/by-uuid/ef394725-6efc-4a3c-8438-a7758b4101a2";
+    fsType = "ext4";
+    options = [ "defaults" "nofail" ];
+  };
+
+  # Graphics - GPU (AMD)
+  services.xserver.videoDrivers = [ "amdgpu" ];
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+    extraPackages = with pkgs; [
+      rocmPackages.clr.icd
+    ];
   };
 
   system.autoUpgrade = {
     enable = true;
-    flake = "github:com/a42k1/nix";
-    flag = [];
-    dates
+    flake = "path:/home/a42/Nix/.dotfiles";
+    flags = [
+      "--update-input" "nixpkgs"
+      "--update-input" "home-manager"
+      "--commit-lock-file"       
+    ];
+    dates = "04:00";
+    allowReboot = false;         
   };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -180,5 +180,4 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
 }
