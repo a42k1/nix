@@ -11,6 +11,8 @@ let
     # Quick rebuild without updating (faster)
     syr = "sudo nixos-rebuild switch --flake /home/a42/Nix/.dotfiles";
     
+    hmr = "home-manager switch --flake /home/a42/Nix/.dotfiles";
+    
     ll = "ls -l";
     ".." = "cd ..";
   };
@@ -92,6 +94,7 @@ in
     shellAliases = aliases;
   };
 
+  #SHELL
   programs.zsh = {
     enable = true;
     shellAliases = aliases;
@@ -102,6 +105,7 @@ in
   programs.kitty = {
   	enable = true;
   };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
