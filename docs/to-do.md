@@ -168,7 +168,7 @@ After rebooting into your system:
 
   ```bash
   hmu  # Should work
-  sysu  # Should work
+  syu  # Should work
   ```
 
 - [ ] Rebuild once more to ensure everything works:

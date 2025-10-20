@@ -116,10 +116,6 @@
     qownnotes
     nemo-with-extensions
     fastfetch
-    # Wine and Lutris
-    wineWowPackages.stable
-    winetricks
-    lutris
 
     # Gaming performance layers
     dxvk
@@ -151,6 +147,9 @@
     enable32Bit = true;
     extraPackages = with pkgs; [
       rocmPackages.clr.icd
+    ];
+    extraPackages32 = with pkgs.driversi686Linux; [
+      mesa
     ];
   };
 
