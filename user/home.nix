@@ -19,8 +19,8 @@ in {
     ./sh.nix
   ];
 
-  home.username = "a42k1";
-  home.homeDirectory = "/home/a42k1";
+  home.username = "a42";
+  home.homeDirectory = "/home/a42";
   home.packages = with pkgs; [
     hello
   ];

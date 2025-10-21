@@ -70,9 +70,9 @@
     };
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
-    users.users.a42k1 = {
+    users.users.a42 = {
       isNormalUser = true;
-      description = "a42k1";
+      description = "a42";
       extraGroups = ["networkmanager" "wheel" "gamemode"];
     };
 
@@ -105,7 +105,8 @@
     };
 
     # A42 home partition
-    fileSystems."/home/a42" = {
+    # A42 home partition
+    fileSystems."/home" = {
       device = "/dev/disk/by-uuid/ef394725-6efc-4a3c-8438-a7758b4101a2";
       fsType = "ext4";
       options = ["defaults" "nofail"];
