@@ -8,6 +8,7 @@
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
   # Standard .config/directory
   configs = {
+    vscode = "vscode";
     #   qtile = "qtile";
     #   nvim = "nvim";
     #   rofi = "rofi";
