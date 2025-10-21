@@ -32,7 +32,7 @@
       };
     };
     homeConfigurations = {
-      a42k1 = home-manager.lib.homeManagerConfiguration {
+      a42 = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [./user/home.nix];
       };

@@ -5,10 +5,10 @@
 }: let
   aliases = {
     # System Management
-    syu = "cd /home/a42/nix/nixconfigs && nix flake update nixpkgs && sudo nixos-rebuild switch --flake .#nix42"; # Update nixpkgs and rebuild system
-    hmu = "cd /home/a42/nix/nixconfigs && nix flake update home-manager && home-manager switch --flake .#a42k1"; # Update home-manager and switch
-    syr = "sudo nixos-rebuild switch --flake /home/a42/nix/nixconfigs#nix42"; # Quick system rebuild without updating
-    hmr = "home-manager switch --flake /home/a42/nix/nixconfigs#a42k1"; # Quick home-manager rebuild without updating
+    syu = "cd /home/nix && nix flake update nixpkgs && sudo nixos-rebuild switch --flake .#nix42"; # Update nixpkgs and rebuild system
+    hmu = "cd /home/nix && nix flake update home-manager && home-manager switch --flake .#a42"; # Update home-manager and switch
+    syr = "sudo nixos-rebuild switch --flake /home/nix#nix42"; # Quick system rebuild without updating
+    hmr = "home-manager switch --flake /home/nix#a42"; # Quick home-manager rebuild without updating
 
     # Navigation
     ll = "ls -l"; # List files in long format

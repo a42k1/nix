@@ -72,15 +72,13 @@
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.a42 = {
       isNormalUser = true;
-      description = "a42";
+      description = "Gustavo";
       extraGroups = ["networkmanager" "wheel" "gamemode"];
     };
 
     # Enable Applications
     programs.firefox.enable = true;
     programs.git.enable = true;
-    programs.direnv.enable = true;
-    programs.thunar.enable = true;
 
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
@@ -97,14 +95,6 @@
     fonts.packages = with pkgs; [
       nerd-fonts.jetbrains-mono
     ];
-
-    # SYSTEMROOT
-    fileSystems."/" = {
-      device = "/dev/disk/by-uuid/f3f3216e-5eef-4724-a2cb-ac5e4870810c";
-      fsType = "ext4";
-    };
-
-    # A42 home partition
     # A42 home partition
     fileSystems."/home" = {
       device = "/dev/disk/by-uuid/ef394725-6efc-4a3c-8438-a7758b4101a2";
@@ -114,7 +104,7 @@
 
     system.autoUpgrade = {
       enable = true;
-      flake = "path:/home/a42/nix/nixconfigs";
+      flake = "path:/home/nix/";
       flags = [
         "--update-input"
         "nixpkgs"
