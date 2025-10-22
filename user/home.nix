@@ -24,6 +24,7 @@ in {
   home.homeDirectory = "/home/a42";
   home.packages = with pkgs; [
     hello
+    wl-clipboard
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
