@@ -73,7 +73,7 @@
     users.users.a42 = {
       isNormalUser = true;
       description = "Gustavo";
-      extraGroups = ["networkmanager" "wheel" "gamemode"];
+      extraGroups = ["networkmanager" "wheel" "gamemode" "video" "input"];
     };
 
     # Enable Applications
