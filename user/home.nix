@@ -4,36 +4,30 @@
   pkgs,
   ...
 }: let
-  dotfiles = "../dotfiles";
+  settings = "../settings";
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
   # Standard .config/directory
   configs = {
     vscode = "vscode";
-    #   qtile = "qtile";
-    #   nvim = "nvim";
-    #   rofi = "rofi";
-    #   alacritty = "alacritty";
-    #   picom = "picom";
   };
 in {
   imports = [
     ./sh.nix
+    # ../dotfiles/caelestia.nix
   ];
-
+  nixpkgs.config.allowUnfree = true;
   home.username = "a42";
   home.homeDirectory = "/home/a42";
   home.packages = with pkgs; [
     hello
     wl-clipboard
+    cider-2
   ];
-
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
   #Try xdg.configFile.
   xdg.configFile =
     builtins.mapAttrs
     (name: subpath: {
-      source = create_symlink "${dotfiles}/${subpath}";
+      source = create_symlink "${settings}/${subpath}";
       recursive = true;
     })
     configs;

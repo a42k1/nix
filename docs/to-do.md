@@ -1,4 +1,11 @@
 [x]sysvar
 [x]modulation
-[]ssh key nix42
+[x]ssh key nix42
+[] overlays
+[]niri
+[]noctalia
+
+[] hyprland
+[]caelestia
+[]
 []setup nvim

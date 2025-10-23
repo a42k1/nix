@@ -42,20 +42,20 @@
       LC_TIME = "pt_BR.UTF-8";
     };
 
-    # Enable the X11 windowing system.
-    services.xserver = {
-      enable = true;
-      autoRepeatDelay = 200;
-      autoRepeatInterval = 50;
-    };
-    services.displayManager.gdm.enable = true;
-    services.desktopManager.gnome.enable = true;
+    # # Enable the X11 windowing system.
+    # services.xserver = {
+    #   enable = true;
+    #   autoRepeatDelay = 200;
+    #   autoRepeatInterval = 50;
+    # };
+    # services.displayManager.gdm.enable = true;
+    # services.desktopManager.gnome.enable = true;
 
-    # Configure keymap in X11
-    services.xserver.xkb = {
-      layout = "us";
-      variant = "";
-    };
+    # # Configure keymap in X11
+    # services.xserver.xkb = {
+    #   layout = "us";
+    #   variant = "";
+    # };
 
     services.printing.enable = true;
 
@@ -90,6 +90,7 @@
       discord
       qownnotes
       fastfetch
+      cider
     ];
 
     fonts.packages = with pkgs; [
