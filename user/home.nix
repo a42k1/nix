@@ -12,7 +12,7 @@
   };
 in {
   imports = [
-    ./sh.nix
+    ../modules/user/home.nix
     # ../dotfiles/caelestia.nix
   ];
   nixpkgs.config.allowUnfree = true;

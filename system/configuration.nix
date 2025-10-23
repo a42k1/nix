@@ -26,9 +26,8 @@
 
     networking.hostName = "nix42";
     networking.networkmanager.enable = true;
-    time.timeZone = "America/Fortaleza";
 
-    # Select internationalisation properties.
+    time.timeZone = "America/Fortaleza";
     i18n.defaultLocale = "en_US.UTF-8";
     i18n.extraLocaleSettings = {
       LC_ADDRESS = "pt_BR.UTF-8";
@@ -42,20 +41,20 @@
       LC_TIME = "pt_BR.UTF-8";
     };
 
-    # # Enable the X11 windowing system.
-    # services.xserver = {
-    #   enable = true;
-    #   autoRepeatDelay = 200;
-    #   autoRepeatInterval = 50;
-    # };
-    # services.displayManager.gdm.enable = true;
-    # services.desktopManager.gnome.enable = true;
+    # Enable the X11 windowing system.
+    services.xserver = {
+      enable = true;
+      autoRepeatDelay = 200;
+      autoRepeatInterval = 50;
+    };
+    services.displayManager.gdm.enable = true;
+    services.desktopManager.gnome.enable = true;
 
-    # # Configure keymap in X11
-    # services.xserver.xkb = {
-    #   layout = "us";
-    #   variant = "";
-    # };
+    # Configure keymap in X11
+    services.xserver.xkb = {
+      layout = "us";
+      variant = "";
+    };
 
     services.printing.enable = true;
 
@@ -130,12 +129,6 @@
       dates = ["weekly"];
     };
 
-    # This value determines the NixOS release from which the default
-    # settings for stateful data, like file locations and database versions
-    # on your system were taken. It‘s perfectly fine and recommended to leave
-    # this value at the release version of the first install of this system.
-    # Before changing this value read the documentation for this option
-    # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
     system.stateVersion = "25.05"; # Did you read the comment?
     nix.settings.experimental-features = ["nix-command" "flakes"];
   };
