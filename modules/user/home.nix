@@ -2,20 +2,22 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: let
-  dotfiles = "/home/a42/dotfiles";
+  dotfiles = "/home/nix/nix42/dotfiles";
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
   # Standard .config/directory
   configs = {
-    vscode = "vscode";
+    Code = "vscode";
+    niri = "niri";
+    hyprland = "hypr";
   };
 in {
   imports = [
     ./sh.nix
-    # ../dotfiles/caelestia.nix
+    ./hyprland/caelestia.nix
   ];
-  nixpkgs.config.allowUnfree = true;
   home.username = "a42";
   home.homeDirectory = "/home/a42";
   home.packages = with pkgs; [

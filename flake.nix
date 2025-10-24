@@ -49,23 +49,21 @@
     nixosConfigurations = {
       nix42 = lib.nixosSystem {
         inherit system;
-        specialArgs = {inherit inputs;};
+        specialArgs = {inherit inputs system;};
         modules = [
           ./system/configuration.nix
           ./modules/system
-          #Include below packages system wide, try this layout for home later.
           {environment.systemPackages = [alejandra.defaultPackage.${system}];}
+          inputs.home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {inherit inputs;};
+            home-manager.backupFileExtension = ".backup";
+            home-manager.users.a42 = import ./modules/user/home.nix;
+          }
         ];
       };
     };
-    # homeConfigurations = {
-    #   a42 = home-manager.lib.homeManagerConfiguration {
-    #     inherit pkgs;
-    #     extraSpecialArgs = {inherit inputs;};
-    #     modules = [
-    #       ./user/home.nix
-    #     ];
-    #   };
-    # };
   };
 }

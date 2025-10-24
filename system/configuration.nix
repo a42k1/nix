@@ -95,21 +95,13 @@
     fonts.packages = with pkgs; [
       nerd-fonts.jetbrains-mono
     ];
-    # A42 home partition
-    fileSystems."/home" = {
-      device = "/dev/disk/by-uuid/ef394725-6efc-4a3c-8438-a7758b4101a2";
-      fsType = "ext4";
-      options = ["defaults" "nofail"];
-    };
-
+    
     system.autoUpgrade = {
       enable = true;
-      flake = "path:/home/nix/";
+      flake = "path:/home/nix/nix42/";
       flags = [
         "--update-input"
         "nixpkgs"
-        "--update-input"
-        "home-manager"
         "--commit-lock-file"
       ];
       dates = "daily";
