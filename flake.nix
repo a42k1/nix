@@ -6,8 +6,8 @@
 
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    #Nix Formatter
 
+    #Nix Formatter
     alejandra.url = "github:kamadorueda/alejandra/4.0.0";
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -52,20 +52,20 @@
         specialArgs = {inherit inputs;};
         modules = [
           ./system/configuration.nix
-          ./dotfiles/noctalia.nix
+          ./modules/system
           #Include below packages system wide, try this layout for home later.
           {environment.systemPackages = [alejandra.defaultPackage.${system}];}
         ];
       };
     };
-    homeConfigurations = {
-      a42 = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = {inherit inputs;};
-        modules = [
-          ./user/home.nix
-        ];
-      };
-    };
+    # homeConfigurations = {
+    #   a42 = home-manager.lib.homeManagerConfiguration {
+    #     inherit pkgs;
+    #     extraSpecialArgs = {inherit inputs;};
+    #     modules = [
+    #       ./user/home.nix
+    #     ];
+    #   };
+    # };
   };
 }
