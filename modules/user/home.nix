@@ -11,7 +11,7 @@
   configs = {
     Code = "vscode";
     niri = "niri";
-    hyprland = "hypr";
+    hypr = "hyprland";
   };
 in {
   imports = [
